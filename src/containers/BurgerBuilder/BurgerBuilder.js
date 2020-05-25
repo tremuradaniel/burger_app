@@ -54,35 +54,39 @@ class BurgerBuilder extends Component {
         this.setState({
             totalPrice: newPrice,
             ingredients: updatedIngredients
-        })
-        this.updatePurchaseState(updatedIngredients)
+        });
+        this.updatePurchaseState(updatedIngredients);
     }
     
     removeIngredientHandler = (type) => {
-        const oldCount = this.state.ingredients[type]
+        const oldCount = this.state.ingredients[type];
         if (oldCount > 0) {
-            const updatedCounter = oldCount - 1
+            const updatedCounter = oldCount - 1;
             const updatedIngredients = {
                 ...this.state.ingredients
             };
-            updatedIngredients[type] = updatedCounter
-            const priceAddition = INGREDINET_PRICES[type]
-            const oldPrice = this.state.totalPrice
-            const newPrice = oldPrice - priceAddition
+            updatedIngredients[type] = updatedCounter;
+            const priceAddition = INGREDINET_PRICES[type];
+            const oldPrice = this.state.totalPrice;
+            const newPrice = oldPrice - priceAddition;
             this.setState({
                 totalPrice: newPrice,
                 ingredients: updatedIngredients
-            })
-            this.updatePurchaseState(updatedIngredients)
+            });
+            this.updatePurchaseState(updatedIngredients);
         }
     }
 
     purchaseHandler = () => {
-        this.setState({purchasing: true})
+        this.setState({purchasing: true});
     }
 
     purchaseCancelHandler = () => {
-        this.setState({purchasing: false})
+        this.setState({purchasing: false});
+    }
+    
+    purchaseContinueHandler = () => {
+        alert('You continue!');
     }
 
     render () {
@@ -99,7 +103,11 @@ class BurgerBuilder extends Component {
                 <Modal show={this.state.purchasing}
                     modalClosed={this.purchaseCancelHandler}
                 >
-                    <OrderSummary ingredients={this.state.ingredients}></OrderSummary>
+                    <OrderSummary 
+                        ingredients={this.state.ingredients}
+                        purchaseCancelled={this.purchaseCancelHandler}
+                        purchaseCotinued={this.purchaseContinueHandler}
+                    ></OrderSummary>
                 </Modal>
                 <Burger ingredients={ this.state.ingredients } />
                 <BuildControls 
