@@ -4,7 +4,7 @@ import Logo from '../../Logo/Logo';
 import logoClasses from '../../Logo/Logo.module.css';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import Backdrop from '../../UI/Backdrop/Backdrop';
-import Auxiliary from '../../../hoc/Auxiliary';
+import Auxiliary from '../../../hoc/Auxiliary/Auxiliary';
 
 import classes from './SideDrawer.module.css';
 
