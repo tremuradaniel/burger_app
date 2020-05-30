@@ -1,0 +1,12 @@
+.BurgerMenu {
+    display: flex;
+    height: 65%;
+
+
+}
+
+@media (min-width: 500px) {
+    .BurgerMenu {
+        display: none;
+    }
+}

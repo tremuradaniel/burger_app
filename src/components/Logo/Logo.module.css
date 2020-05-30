@@ -1,12 +1,15 @@
-.Logo {
+.Logo, .LogoSidebar {
     height: 100%;
     box-sizing: border-box;
     border-radius: 30px;
-    background-color: black;
-    padding: 8px;
+    background-color: white;
     height: 100%;
 }
 
-.Logo img {
+.LogoSidebar {
+    margin-left: -32px;
+}
+
+.Logo img, .LogoSidebar img {
     height: 100%;
 }
