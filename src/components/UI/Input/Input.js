@@ -5,15 +5,52 @@ import classes from './Input.module.css';
 const input = (props) => {
     let inputElement = null;
 
-    switch (props.inputType) {
+    const inputClasses = [classes.InputElement]
+
+    if (props.invalid && props.shouldValidate && props.touched) {
+        inputClasses.push(classes.Invalid);
+    }
+
+    switch (props.elementType) {
         case 'input':
-            inputElement= <input className={classes.InputElement} {...props} />;
+            inputElement= <input 
+                className={inputClasses.join(' ')} 
+                {...props.elementConfig} 
+                onChange={props.changed}
+                value = {props.value}
+            />;
             break;
         case 'textarea':
-            inputElement= <textarea className={classes.InputElement} {...props} />;
+            inputElement= <textarea className={inputClasses.join(' ')} 
+                onChange={props.changed}
+                {...props.elementConfig} 
+                value = {props.value}
+            ></textarea>;
+            break;
+        case 'select':
+            inputElement= (
+                <select 
+                    className={inputClasses.join(' ')} 
+                    onChange={props.changed}
+                    value = {props.value}
+                >
+                    <option value="" defaultValue disabled hidden>Choose here</option>
+                    {
+                        props.elementConfig.options.map(option => (
+                            <option value={option.value} key={option.value}>
+                                {option.displayValue}
+                            </option>
+                        ))
+                    }
+                </select>
+            );
             break;    
         default:
-            inputElement= <input className={classes.InputElement} {...props} />;
+            inputElement= <input 
+                onChange={props.changed}
+                className={classes.InputElement} {...props.elementConfig} 
+                value = {props.value}
+            />;
     }
 
     return (
