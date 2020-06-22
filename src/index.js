@@ -4,15 +4,21 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import './storage/fonts/OpenSans-Regular.ttf';
+import thunk from 'redux-thunk';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer from './store/reducer';
+import { createStore, applyMiddleware, compose } from 'redux';
+import burgerBuilderReducer from './store/reducers/burgerBuilder';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const store = createStore(reducer, /* preloadedState, */ composeEnhancers(
 
 const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  burgerBuilderReducer,
+  composeEnhancers(
+    applyMiddleware(thunk)
+  )
 );
 
 ReactDOM.render(
