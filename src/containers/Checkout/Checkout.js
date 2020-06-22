@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import CheckoutSummary from '../../components/Order/CheckoutSummary';
@@ -15,8 +15,10 @@ class Checkout extends Component {
         this.props.history.replace('/checkout/contact-data');
     }
     render () {
+        const purchasedRedirect = this.props.purchased ? <Redirect to="/" /> : null
         return (
             <div>
+                {purchasedRedirect}
                 <CheckoutSummary
                     checkoutCancelled={this.checkoutCancelledHandler}
                     checkoutContinued={this.checkoutContinuedHandler}
@@ -33,7 +35,8 @@ class Checkout extends Component {
 
 const mapStateToProps = state => {
     return {
-        ings: state.burgerBuilder.ingredients
+        ings: state.burgerBuilder.ingredients,
+        purchased: state.order.purchased
     }
 }
 
