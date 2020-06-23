@@ -67,7 +67,6 @@ export const fetchOrders = () => {
         dispatch(fetchOrdersStart());
         axios.get('/orders.json')
         .then(res => {
-            debugger
             const fetchedOrders = [];
             for (let key in res.data) {
                 fetchedOrders.push({
