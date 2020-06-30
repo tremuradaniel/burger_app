@@ -39,8 +39,8 @@ export const auth = (email, password, isSignup) => {
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
             })
             .catch(err => {
-                if (process.env.REACT_APP_ENV === 'dev') { console.log(err); }
-                dispatch(authFail(err))
+                if (process.env.REACT_APP_ENV === 'dev') { console.log(err.response.data.error.message); }
+                dispatch(authFail(err.response.data.error.message))
             })
     };
 };
