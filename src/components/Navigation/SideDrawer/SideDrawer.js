@@ -28,7 +28,9 @@ const sideDrawer = (props) => {
                     <Logo customClass={logoSidebarStyle} />
                 </div>
                 <nav>
-                    <NavigationItems />
+                    <NavigationItems 
+                        isAuthenticated={props.isAuth}
+                    />
                 </nav>
             </div>
         </Auxiliary>
