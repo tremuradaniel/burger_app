@@ -9,7 +9,8 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 class Orders extends Component {
 
     componentDidMount () {
-        this.props.onFetchOrders(this.props.token);
+        const token = this.props?.token ? this.props.token : localStorage.getItem('token');
+        this.props.onFetchOrders(token);
     }
 
     render () {

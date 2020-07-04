@@ -134,7 +134,6 @@ class Auth extends Component {
 
             let authRedirect = null;
             if (this.props.isAuthenticated) {
-                debugger
                 authRedirect = <Redirect to={this.props.authRedirectPath} />
             }
 
@@ -155,7 +154,6 @@ class Auth extends Component {
 }
 
 const mapStateToProps = state => {
-    debugger
     return {
         loading: state.auth.loading,
         error: state.auth.error,
